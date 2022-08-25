@@ -1,5 +1,5 @@
 ---
-    import { SITE } from '$/config'
+    import { SITE, LOGO } from '$/config'
     import SvgIcon from './SvgIcon.astro'
     import ModeSwitcherBtn from './ModeSwitcherBtn.svelte'
     import SearchBtn from './SearchBtn.svelte'
@@ -9,11 +9,11 @@
 <header class="header">
     <div class="header__logo">
         <a href="/" class="avatar">
-            <img class="header__logo-img" src="/assets/logo.svg" alt="Astro logo" />
+            <img class="header__logo-img" src={ '/' +LOGO} alt="Astro logo" />
         </a>
     </div>
     <div class="header__meta flex-1">
-        <h3 class="header__title dark:text-primarySecondaryDark">
+        <h3 class="header__title">
             <a href="">{ SITE.name }</a>
         </h3>
         <div class="header__meta-more flex">
@@ -52,7 +52,7 @@
 
 <style>
     .header {
-        @apply flex gap-4 border-b py-3 /* border-gray-200 dark:border-gray-700 - check styles/global.css */
+        @apply flex gap-4 border-b border-gray-200 dark:border-gray-700 py-3
     }
     .header__logo-img {
         @apply w-16 h-16 rounded-full overflow-hidden
