@@ -2,7 +2,7 @@
     import { onMount } from 'svelte'
     import SearchIcon from './SearchIcon.svelte'
     import PostSearchPreview from './PostSearchPreview.svelte'
-    import allPosts from '$/data/contentrain/blog/blog.json'
+    import allPosts from '../data/contentrain/blog/blog.json'
     let searchInput
     let searchableDocs
     let searchIndex
