@@ -2,7 +2,7 @@
     import { onMount } from 'svelte'
     import SearchIcon from './SearchIcon.svelte'
     import PostSearchPreview from './PostSearchPreview.svelte'
-
+    import allPosts from '$/data/contentrain/blog/blog.json'
     let searchInput
     let searchableDocs
     let searchIndex
@@ -12,25 +12,24 @@
 
     onMount(async() => {
         const lunr = (await import('lunr')).default
-        const resp = await fetch('/search-index.json')
-        searchableDocs = await resp.json()
+        searchableDocs = allPosts
             // Initialize indexing
-        searchIndex = lunr(function(){
+        searchIndex = lunr(function(e){
             // the match key...
-            this.ref('slug')
+            e.ref('slug')
 
             // indexable properties
-            this.field('title')
-            this.field('description')
-            this.field('tags')
+            e.field('title')
+            e.field('description')
+            e.field('tags')
 
             // Omit, if you don't want to search on `body`
-            this.field('body')
+            e.field('body')
 
             // Index every document
             searchableDocs.forEach(doc => {
-                this.add(doc)
-            }, this)
+                e.add(doc)
+            }, e)
         })
         searchInput.focus()
     })

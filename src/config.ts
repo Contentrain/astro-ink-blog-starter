@@ -1,37 +1,26 @@
-import type{ NavItems } from './types'
-
-export const NAV_ITEMS: NavItems = {
-    home: {
-        path: '/',
-        title: 'home'
-    },
-    blog: {
-        path: '/blog',
-        title: 'blog'
-    },
-    tags: {
-        path: '/tags',
-        title: 'tags'
-    },
-    media: {
-        path: '/media',
-        title: 'media'
-    },
-    about: {
-        path: '/about',
-        title: 'about'
+import type { NavItems } from './types'
+import configData from './data/contentrain/config/config.json'
+const data = configData[0]
+const items = data.navItems.map(x => {
+    return {
+        [x.title]: {
+            title: x.title,
+            path: x.path
+        }
     }
-}
+})
+export const NAV_ITEMS: NavItems = Object.assign({}, ...items)
 
 export const SITE = {
     // Your site's detail?
-    name: 'Ink',
-    title: 'Astro - Ink',
-    description: 'Crisp, minimal, personal blog theme for Astro',
-    url: 'https://astro-ink.vercel.app',
-    githubUrl: 'https://github.com/one-aalam/astro-ink',
-    listDrafts: true
+    name: data.site.name,
+    title: data.site.title,
+    description: data.site.description,
+    url: data.site.url,
+    githubUrl: data.site.githubUrl,
+    listDrafts: data.site.listDrafts
     // description ?
 }
 
-export const PAGE_SIZE = 8
+export const PAGE_SIZE = data.pageSize
+export const LOGO = data.logo.split('public/')[1]
