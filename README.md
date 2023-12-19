@@ -1,4 +1,4 @@
-# Astro - Ink
+# Astro - Ink - Forked
 Crisp, minimal, personal blog theme for Astro
 
 <img src="./public/astro-banner.png" alt="Astro Banner" />
